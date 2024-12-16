@@ -20,12 +20,59 @@ import {
   setLanguage,
 } from "@/store/reducers/global"
 import MessageList from "@/components/Chat/MessageList"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
 import { Send } from "lucide-react"
 import { rtmManager } from "@/manager/rtm"
-import { type IRTMTextItem, EMessageType, ERTMTextType } from "@/types"
+import {
+  type IRTMTextItem,
+  EMessageType,
+  ERTMTextType,
+  Language,
+} from "@/types"
 import { RemoteGraphSelect } from "@/components/Chat/ChatCfgGraphSelect"
 import { RemoteModuleCfgSheet } from "@/components/Chat/ChatCfgModuleSelect"
+
+export function LanguageSelect() {
+  const dispatch = useAppDispatch()
+  const language = useAppSelector((state) => state.global.language)
+  const agentConnected = useAppSelector((state) => state.global.agentConnected)
+
+  const onLanguageChange = (val: Language) => {
+    dispatch(setLanguage(val))
+  }
+
+  return (
+    <>
+      <Select
+        value={language}
+        onValueChange={onLanguageChange}
+        disabled={agentConnected}
+      >
+        <SelectTrigger className="w-32">
+          <SelectValue placeholder="Language" />
+        </SelectTrigger>
+        <SelectContent>
+          {LANGUAGE_OPTIONS.map((item) => {
+            return (
+              <SelectItem value={item.value} key={item.value}>
+                {item.label}
+              </SelectItem>
+            )
+          })}
+        </SelectContent>
+      </Select>
+    </>
+  )
+}
 
 export default function ChatCard(props: { className?: string }) {
   const { className } = props
@@ -109,6 +156,7 @@ export default function ChatCard(props: { className?: string }) {
           {/* Action Bar */}
           <div className="flex w-full flex-wrap items-center justify-end gap-x-2 gap-y-2">
             <RemoteGraphSelect />
+            <LanguageSelect />
             <RemoteModuleCfgSheet />
             <RemotePropertyCfgSheet />
             {isRagGraph(graphName) && <PdfSelect />}

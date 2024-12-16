@@ -322,7 +322,7 @@
               "api_key": "${env:OPENAI_API_KEY}",
               "base_url": "",
               "frequency_penalty": 0.9,
-              "greeting": "TEN Agent 2 connected. How can I help you today?",
+              "greeting": "Hello AppBuilder ! how are you today?",
               "max_memory_length": 10,
               "max_tokens": 512,
               "model": "${env:OPENAI_MODEL}",
