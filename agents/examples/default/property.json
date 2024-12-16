@@ -308,6 +308,13 @@
           },
           {
             "type": "extension",
+            "name": "hello_world",
+            "addon": "hello_world",
+            "extension_group": "default",
+            "property": {}
+          },
+          {
+            "type": "extension",
             "name": "llm",
             "addon": "openai_chatgpt_python",
             "extension_group": "chatgpt",
@@ -315,7 +322,7 @@
               "api_key": "${env:OPENAI_API_KEY}",
               "base_url": "",
               "frequency_penalty": 0.9,
-              "greeting": "TEN Agent connected. How can I help you today?",
+              "greeting": "TEN Agent 2 connected. How can I help you today?",
               "max_memory_length": 10,
               "max_tokens": 512,
               "model": "${env:OPENAI_MODEL}",
@@ -434,6 +441,15 @@
             ],
             "data": [
               {
+                "name": "text_input",
+                "dest": [
+                  {
+                    "extension_group": "default",
+                    "extension": "hello_world"
+                  }
+                ]
+              },
+              {
                 "name": "text_data",
                 "dest": [
                   {
@@ -443,6 +459,21 @@
                   {
                     "extension_group": "transcriber",
                     "extension": "message_collector"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "extension_group": "default",
+            "extension": "hello_world",
+            "data": [
+              {
+                "name": "text_output",
+                "dest": [
+                  {
+                    "extension_group": "chatgpt",
+                    "extension": "llm"
                   }
                 ]
               }
