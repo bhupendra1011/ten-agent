@@ -322,7 +322,7 @@
               "api_key": "${env:OPENAI_API_KEY}",
               "base_url": "",
               "frequency_penalty": 0.9,
-              "greeting": "Hello AppBuilder ! how are you today?",
+              "greeting": "Hello AppBuilder 2 ! how are you today?",
               "max_memory_length": 10,
               "max_tokens": 512,
               "model": "${env:OPENAI_MODEL}",
@@ -441,15 +441,6 @@
             ],
             "data": [
               {
-                "name": "text_input",
-                "dest": [
-                  {
-                    "extension_group": "default",
-                    "extension": "hello_world"
-                  }
-                ]
-              },
-              {
                 "name": "text_data",
                 "dest": [
                   {
@@ -459,6 +450,10 @@
                   {
                     "extension_group": "transcriber",
                     "extension": "message_collector"
+                  },
+                  {
+                    "extension_group": "default",
+                    "extension": "hello_world"
                   }
                 ]
               }
@@ -469,7 +464,7 @@
             "extension": "hello_world",
             "data": [
               {
-                "name": "text_output",
+                "name": "text_data",
                 "dest": [
                   {
                     "extension_group": "chatgpt",
