@@ -450,10 +450,6 @@
                   {
                     "extension_group": "transcriber",
                     "extension": "message_collector"
-                  },
-                  {
-                    "extension_group": "default",
-                    "extension": "hello_world"
                   }
                 ]
               }
@@ -462,6 +458,17 @@
           {
             "extension_group": "default",
             "extension": "hello_world",
+            "cmd": [
+              {
+                "name": "flush",
+                "dest": [
+                  {
+                    "extension_group": "chatgpt",
+                    "extension": "llm"
+                  }
+                ]
+              }
+            ],
             "data": [
               {
                 "name": "text_data",
@@ -523,8 +530,8 @@
                 "name": "flush",
                 "dest": [
                   {
-                    "extension_group": "chatgpt",
-                    "extension": "llm"
+                    "extension_group": "default",
+                    "extension": "hello_world"
                   }
                 ]
               }
@@ -534,8 +541,8 @@
                 "name": "text_data",
                 "dest": [
                   {
-                    "extension_group": "chatgpt",
-                    "extension": "llm"
+                    "extension_group": "default",
+                    "extension": "hello_world"
                   }
                 ]
               }

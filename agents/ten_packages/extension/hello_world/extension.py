@@ -57,6 +57,9 @@ class HelloWorldExtension(AsyncExtension):
             response_data.set_property_bool(
                 DATA_OUT_PROPERTY_END_OF_SEGMENT, True
             )
+            response_data.set_property_bool(
+                "is_final", True
+            )
             
             # Send the response back to llm or other extensions
             ten_env.send_data(response_data)
@@ -66,10 +69,10 @@ class HelloWorldExtension(AsyncExtension):
     def generate_response(self,user_input: str,ten_env:AsyncTenEnv) -> str:
         # Generate a response based on the input text
         ten_env.log_info(f"compare function hello_world {user_input}")
-        if "how are you" in user_input.lower():
-            return "Hello, World!"
+        if "your name" in user_input.lower():
+            return "Hello, World Ten Extension is my name"
         else:
-            return "I'm here to assist you."
+            return user_input
 
     async def on_audio_frame(
         self, ten_env: AsyncTenEnv, audio_frame: AudioFrame
